@@ -44,4 +44,21 @@ exports.verificationCodeSchema = Joi.object({
     .required()
 })
 
+exports.productSchema = Joi.object({
+    title: Joi.string()
+        .required(),
+    description: Joi.string()
+        .required(),
+    price: Joi.number()
+        .min(0)
+        .max(1000000)
+        .required(),
+    image: Joi.string()
+        .required(),
+    rating: Joi.number()
+        .min(0)
+        .max(5)
+        .required(),
+})
+
 
