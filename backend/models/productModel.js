@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 
 const productModel = new mongoose.Schema({
@@ -14,7 +14,7 @@ const productModel = new mongoose.Schema({
         type: Number,
         required: [true, 'Product price is required'],
         min: 0,
-        max: 1000000000,
+        max: 100000000,
         trim: true
     },
     description: {
@@ -29,15 +29,16 @@ const productModel = new mongoose.Schema({
         required: [true, 'Product image is required'],
         minlength: 5,
         maxlength: 10000,
-        trim: true
+        trim: true,
     },
     rating: {
         type: Number,
         default: 0,
         mutable: true,
         min: 0,
-        max: 5
+        max: 5,
+        required: false,
     }
-})
+});
 
-module.exports = mongoose.model('Product', productModel);
+module.exports = mongoose.model("Product", productModel);
