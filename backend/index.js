@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./router/authRouter');
 const productsRouter = require('./router/productsRouter');
+const ordersRouter = require('./router/orderRouter');
 const URI = process.env.MONGODB_URI;
 
 const app = express();
@@ -25,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRouter);
-app.use('/', productsRouter)
+app.use('/', productsRouter, ordersRouter);
 
 // Server
 const PORT = process.env.PORT || 3000;
