@@ -4,15 +4,13 @@ const {productSchema} = require("../middlewares/validator");
 
 exports.addProduct = async (req, res) => {
     const { title, description, price, image, rating } = req.body;
-    const validated
-        = productSchema.validate({
-            title: title,
-            description: description,
-            price: price,
-            image: image,
-            rating: rating
-    });
-
+    const validated = productSchema.validate({
+                                        title: title,
+                                        description: description,
+                                        price: price,
+                                        image: image,
+                                        rating: rating
+                                });
     if(validated.error)
         return res.status(400).json(validated.error.details[0].message);
 
@@ -39,7 +37,7 @@ exports.getProducts = async (req, res) => {
 
 exports.getProductById = async (req, res) => {
     const { id } = req.params;
-    console.log(id);
+
     const product = await Product.findById({ _id: id });
     if(!product)
         return res.status(404).json({message: 'Product not found'});
@@ -48,8 +46,8 @@ exports.getProductById = async (req, res) => {
 }
 
 exports.deleteById = async (req, res) => {
-    const { id } = req.params()
-    const response = await Product.findByIdAndDelete({id: id})
+    const { id } = req.params;
+    const response = await Product.findByIdAndDelete({_id: id})
     if (!response)
         return res.status(404).json({message: 'Product not found'})
 
@@ -68,13 +66,14 @@ exports.deleteAll = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
     const { id } = req.params;
+
     const product = req.body;
     try {
         const validated = productSchema.validate(product);
         if (validated.error)
             return res.status(400).json(validated.error.details[0].message);
 
-        const existingProduct = await Product.findById({id});
+        const existingProduct = await Product.findById({_id: id});
         if (!existingProduct)
             return res.status(404).json({message: 'Product not found'});
 
@@ -90,4 +89,3 @@ exports.updateProduct = async (req, res) => {
         return res.status(400).json({message: err.message});
     }
 }
-
