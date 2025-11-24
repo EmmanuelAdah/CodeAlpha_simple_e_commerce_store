@@ -14,6 +14,11 @@ exports.signupSchema = Joi.object({
         .required()
         .email({ tlds: { allow: ['com', 'net'] } }),
 
+    gender: Joi.string()
+        .lowercase()
+        .valid("male", "female", "other")
+        .required(),
+
     password: Joi.string()
         .required()
         .pattern(new RegExp(`^(?=.*[A-Za-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{6,30}$`))
@@ -24,13 +29,13 @@ exports.signupSchema = Joi.object({
 
 exports.signinSchema = Joi.object({
     email: Joi.string()
-    .min(6)
-    .max(50)
-    .required()
-    .email({ tlds: { allow: ['com', 'net'] }}),
+        .min(6)
+        .max(50)
+        .required()
+        .email({ tlds: { allow: ['com', 'net'] }}),
 
     password: Joi.string()
-    .required()
+        .required()
 })
 
 exports.verificationCodeSchema = Joi.object({
