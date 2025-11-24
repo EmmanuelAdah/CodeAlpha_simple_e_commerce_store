@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "node --env-file=.env index.js",
-    "dev": "nodemon --watch --trace-warnings --env-file=.env index.js"
+    "start": "node --env-file=.env app.js",
+    "dev": "nodemon --watch --trace-warnings --env-file=.env app.js"
   },
   "keywords": [],
   "author": "",
