@@ -30,10 +30,10 @@ exports.signin = async (req, res) => {
 
 
 exports.signup = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, gender, password } = req.body;
 
     try{
-     const {error} = signupSchema.validate({ username, email, password });
+     const {error} = signupSchema.validate({ username, email, gender: gender.toLowerCase(), password });
 
         if(error){
              return res.status(400).send(error.details[0].message);
@@ -48,6 +48,7 @@ exports.signup = async (req, res) => {
          const savedUser = await new User({
              username,
               email,
+             gender: gender.toLowerCase(),
              password: hashedPassword
           }).save();
 
