@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>E-Commerce Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+
+    <div class="header">
+        <div class="brand">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZNLmMQFd7saOA1scXTHPnIpRFzb_pSFX0PA&s" alt="Logo">
+            <span > CodeAlpha Store</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Contact</a>
+            <a href="#">About</a>
+        </div>
+        <div class="icons">
+            <div class="toggle-btn" id="modeToggle">☀️</div>
+            <div class="cart" id="cartIcon">🛒 <span id="cartCount">0</span></div>
+        </div>
+    </div>
+
+    <!-- PRODUCT CONTAINER -->
+    <div class="container" id="productsContainer"></div>
+
+    <!-- PRODUCT POPUP -->
+    <div class="overlay" id="popupOverlay">
+        <div class="popup" id="popupContent">
+            <div id="popupDetails"></div>
+            <div class="popup-buttons">
+                <button class="close-btn" onclick="closePopup()">Close</button>
+                <button class="popup-cart-btn" id="popupAddBtn">🛒 Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="cartOverlay">
+        <div class="popup cart-popup" id="cartContent">
+            <h3>Shopping Cart</h3>
+            <div id="cartItems"></div>
+            <button class="order-btn" onclick="placeOrder()">Place Order</button>
+            <div class="cart-buttons" id="cartButtons">
+                <button class="close-btn" style="margin-top:5px;" onclick="closeCart()">Close</button>
+                <button class="clear-cart-btn" style="margin-top:5px;" onclick="clearCart()">Clear Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./scripts/index.js">
+    </script>
+</body>
+</html>
