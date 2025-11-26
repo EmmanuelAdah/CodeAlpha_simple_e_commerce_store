@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Verify Account</title>
     <link rel="stylesheet" href="../styles/verification.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Enter OTP code</h2>
-        <div class="input-group">
-            <label for="inputBox" id="inputBox">
-                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required/>
-                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required/>
-                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required/>
-                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required/>
-                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required/>
-                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" required/>
-            </label>
+
+<div class="verify-container">
+    <h2>Verify Your Account</h2>
+
+    <label>Email Address</label>
+    <input type="email" id="emailInput" placeholder="Enter your email">
+
+    <button id="sendCodeBtn">Send Verification Code</button>
+</div>
+
+<div class="overlay" id="popupOverlay">
+    <div class="popup">
+        <h3>Enter Verification Code</h3>
+        <p>A 6-digit code was sent to your email.</p>
+
+        <div class="code-inputs">
+            <input type="text" maxlength="1" class="code" disabled>
+            <input type="text" maxlength="1" class="code" disabled>
+            <input type="text" maxlength="1" class="code" disabled>
+            <input type="text" maxlength="1" class="code" disabled>
+            <input type="text" maxlength="1" class="code" disabled>
+            <input type="text" maxlength="1" class="code" disabled>
         </div>
-        <button>Verify OTP</button>
+
+        <button class="verify-btn" id="verifyBtn">Verify</button>
+        <button class="close-btn" onclick="closePopup()">Close</button>
     </div>
+</div>
+
+<script src="../scripts/verification.js"></script>
+
 </body>
 </html>
