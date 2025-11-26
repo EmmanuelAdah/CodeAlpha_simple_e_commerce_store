@@ -27,6 +27,11 @@ body {
         border-radius: 8px;
         object-fit: cover;
     }
+    .nav-links-container {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+    }
     .nav-links {
         display: flex;
         gap: 20px;
@@ -40,6 +45,51 @@ body {
     }
     .nav-links a:hover {
        border-bottom: 2px solid #ffffff;
+    }
+    .log-links {
+        display: flex;
+        gap: 40px;
+        font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+        align-content: center;
+        justify-content: center;
+    }
+    .log-links a {
+        background: #9d9dc2;
+        color: white;
+        text-decoration: none;
+        transition: 0.2s;
+        height: 100%;
+        align-self: center;
+        justify-self: center;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+    .log-links a:hover {
+        background: #ffffff;
+        margin: 0 -10px;
+        border-radius: 8px;
+        color: #6c63ff;
+        align-self: center;
+        transition: 0.2s;
+        height: 100%;
+        justify-self: center;
+        padding: 10px 20px;
+    }
+
+    @media(max-width: 768px) {
+
+        .nav-links a:nth-child(1),
+        .nav-links a:nth-child(2){
+            display: none;
+        }
+
+        .nav-links a:nth-child(3) {
+            display: block;
+        }
+
+        .log-links {
+            display: flex;
+        }
     }
 
     .cart {
@@ -94,6 +144,12 @@ body {
         object-fit: cover;
         height: 180px;
         margin-bottom: 10px;
+    }
+    .product-rating {
+        padding-bottom: 5px;
+        display: flex;
+        font-size: 14px;
+        gap: 5px;
     }
     .slider {
         position: relative;
@@ -359,4 +415,15 @@ body {
     body.dark .product-card p,
     body.dark .product-card span {
         color: #fff !important;
+    }
+    footer {
+        position: fixed;
+        bottom: 0.2rem;
+        padding: 0 20px;
+        right: 0;
+        margin-right: 20px;
+        color: #27275d;
+        text-align: center;
+        align-self: center;
+        justify-self: center;
     }
