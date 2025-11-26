@@ -38,6 +38,14 @@ const productModel = new mongoose.Schema({
         min: 0,
         max: 5,
         required: false,
+    },
+    color: {
+        type: String,
+        required: false,
+    },
+    size: {
+        type: String,
+        required: false,
     }
 }, {timestamps: true});
 
