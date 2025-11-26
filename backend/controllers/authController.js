@@ -1,5 +1,5 @@
 
-const { signupSchema, verificationCodeSchema} = require('../middlewares/validator');
+const { signupValidation, verificationCodeSchema} = require('../middlewares/validator');
 const { doHash, doValidation, hmacProcess} = require("../middlewares/hasher");
 const User = require("../models/userModel");
 const { generateToken, userDetails } = require("../middlewares/jwtGenerator");
@@ -33,7 +33,7 @@ exports.signup = async (req, res) => {
     const { username, email, gender, password } = req.body;
 
     try{
-     const {error} = signupSchema.validate({ username, email, gender: gender.toLowerCase(), password });
+     const {error} = signupValidation.validate({ username, email, gender: gender.toLowerCase(), password });
 
         if(error){
              return res.status(400).send(error.details[0].message);
