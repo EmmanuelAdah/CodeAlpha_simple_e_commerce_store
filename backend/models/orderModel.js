@@ -9,23 +9,15 @@ const orderModel = new mongoose.Schema({
         trim: true,
     },
     products: [{
-         productId: {
+        productId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Product",
             required: true
-            },
-        title: {
-            type: String,
-            required: true
-            },
-        image: {
-            type: String,
-            required: true
-            },
+        },
         priceAtPurchase: {
             type: Number,
-            required: true },
-
+            required: true
+        },
         quantity: {
              type: Number,
             required: true,
@@ -41,6 +33,9 @@ const orderModel = new mongoose.Schema({
     deliveryAddress: {
         type: String,
         required: false,
+        trim: true,
+        maxlength: 200,
+        minlength: 6,
     },
     paymentStatus: {
         type: Boolean,
