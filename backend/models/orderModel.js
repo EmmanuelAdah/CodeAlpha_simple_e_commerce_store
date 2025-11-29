@@ -10,21 +10,26 @@ const orderModel = new mongoose.Schema({
     },
     products: [{
         productId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Product",
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true
+        },
+        title: {
+            type: String,
             required: true
         },
-        priceAtPurchase: {
+        price: {
             type: Number,
             required: true
         },
         quantity: {
-             type: Number,
+            type: Number,
             required: true,
-            default: 1,
             min: 1
-         }
-    }],
+        },
+        image: String,
+        }
+    ],
     totalAmount: {
         type: Number,
         required: true,
@@ -52,7 +57,10 @@ const orderModel = new mongoose.Schema({
     deliveryState: {
         type: String,
         default: "pending",
-    }
+    },
+    checkoutReceipt: {
+
+    },
 }, {timestamps: true});
 
 module.exports = mongoose.model("Order", orderModel);
