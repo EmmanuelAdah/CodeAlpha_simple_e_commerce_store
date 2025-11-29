@@ -422,8 +422,8 @@ body {
         padding: 0 20px;
         right: 0;
         margin-right: 20px;
-        color: #27275d;
         text-align: center;
         align-self: center;
         justify-self: center;
+        background: transparent;
     }
