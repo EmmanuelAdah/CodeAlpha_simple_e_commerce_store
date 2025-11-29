@@ -1,7 +1,7 @@
 
 const Joi = require("joi");
 
-exports.signupSchema = Joi.object({
+exports.signupValidation = Joi.object({
     username: Joi.string()
         .min(3)
         .max(30)
@@ -27,7 +27,7 @@ exports.signupSchema = Joi.object({
         })
 });
 
-exports.signinSchema = Joi.object({
+exports.signinValidation = Joi.object({
     email: Joi.string()
         .min(6)
         .max(50)
