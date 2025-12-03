@@ -427,3 +427,16 @@ body {
         justify-self: center;
         background: transparent;
     }
+    #addressInputContainer {
+        margin: 0;
+        padding: 10px;
+        line-height: 1.5;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    #addressInputContainer input {
+        width: 95%;
+        height: 34px;
+        border-radius: 5px;
+        padding-left: 7px;
+        font-size: 17px;
+    }

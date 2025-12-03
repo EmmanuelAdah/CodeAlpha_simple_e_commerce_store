@@ -1,3 +1,5 @@
+const BASE_URL = "http://localhost:8000";
+
 const products = [
         { id: 1, title: "Wireless Headphones", price: "$59.99", image: "https://img-1.kwcdn.com/product/fancy/3b4de749-13a6-4c1a-8924-ad8966c68989.jpg?imageView2/2/w/800/q/70/format/avif", description: "High-quality wireless headphones with noise cancellation.", rating: 4.5, colors: ["Black", "White", "Red", "Blue", "Yellow"] },
         { id: 2, title: "Smart Watch", price: "$129.99", image: "https://img.kwcdn.com/product/fancy/e78e8dfd-610c-4759-a9c1-870e23f47395.jpg?imageView2/2/w/800/q/70/format/avif", description: "Smart watch with heart rate monitor and GPS.", rating: 4.2, colors: ["Black", "White", "Red", "Blue", "Yellow"] },
@@ -10,16 +12,19 @@ const products = [
         { id: 9, title: "Men'S Vintage Egyptian", price: "$41.99", image: "https://img.kwcdn.com/product/fancy/3d1f2cc2-4c63-4ea6-9755-0048eeae74e7.jpg?imageView2/2/w/800/q/70/format/avif", description: "Men'S Vintage Egyptian-Inspired Geometric Art Print Short", rating: 4.8, sizes: ["S", "M", "L", "XL", "2XL", "3XL"] },
     ];
 
-    document.DOMContentLoaded = () => {}
+    let userId = localStorage.getItem("userId");
     let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
 
-    // let productsFromDB = await fetch('http://localhost:8000/products/products')
+updateCartCount()
+document.addEventListener("DOMContentLoaded", async () => {
+        // let response = await fetch('http://localhost:8000/products/products')
+        // const productsFromDB = await response.json();
 
-    const container = document.getElementById("productsContainer");
-    products.forEach(product => {
-        const div = document.createElement("div");
-        div.className = "product-card";
-        div.innerHTML = `
+        const container = document.getElementById("productsContainer");
+        products.forEach(product => {
+            const div = document.createElement("div");
+            div.className = "product-card";
+            div.innerHTML = `
             <img src="${product.image}" alt="${product.title}">
             <div class="product-title">${product.title}</div>
             <div class="product-price">${product.price}</div>
@@ -27,7 +32,8 @@ const products = [
             <button class="btn add-to-cart-btn" onclick="addToCart(${product.id}, this)">🛒 Add to Cart</button>
             <button class="btn view-btn" onclick="viewDetails(${product.id})">View Details</button>
         `;
-        container.appendChild(div);
+            container.appendChild(div);
+        });
     });
 
     // Add product to Cart
@@ -91,7 +97,7 @@ const products = [
         document.getElementById("popupOverlay").style.display = "flex";
     }
 
-    // Build clickable color options if available
+    // for building clickable color options if available
     function buildColorOptions(product) {
         let colorOptions = '';
         if (product.colors && product.colors.length > 0) {
@@ -173,6 +179,7 @@ const products = [
         }
     }
 
+
     // For closing or exiting the cart interface
     function closeCart() {
         document.getElementById("cartOverlay").style.display = "none";
@@ -189,15 +196,30 @@ const products = [
     }
 
     // for placing order
-    function placeOrder() {
+    async function placeOrder() {
         if(cart.length === 0) {
             alert("Your cart is empty!");
             return;
         }
-        alert("Order placed successfully!");
-        cart = [];
-        updateCartCount();
-        closeCart();
+        const address = document.getElementById("addressInput").value.trim();
+        try {
+            const response = await fetch(`${BASE_URL}/orders/create`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({userId, cart, address: address || "No address provided."})
+            })
+            if (!response.ok) {
+                alert("Something went wrong! Please try again later.");
+                return;
+            }
+            cart = [];
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            closeCart();
+            alert("Your order has been placed successfully!");
+        } catch (error) {
+            return alert("Something went wrong! Please try again later.");
+        }
     }
 
     const toggle = document.getElementById("modeToggle");
